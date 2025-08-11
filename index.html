@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pixel Art Viewer</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
     html, body {
       margin: 0;
       padding: 0;
@@ -13,16 +15,15 @@
       font-family: Arial, sans-serif;
       height: 100%;
       overflow-x: hidden;
-      touch-action: none; /* Important pour désactiver le scroll natif sur mobile lors du pinch/drag */
+      touch-action: none;
     }
-    /* Le div flouté de fond */
     #blur-bg {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       backdrop-filter: blur(8px);
       background: rgba(65, 65, 65, 0.6);
-      z-index: 900; /* derrière l'image zoomée (1000) */
-      display: none; /* caché par défaut */
+      z-index: 900;
+      display: none;
     }
     img {
       image-rendering: pixelated;
@@ -34,11 +35,10 @@
       cursor: zoom-in;
       transition: none;
       position: relative;
-      z-index: 1001; /* au-dessus du blur */
+      z-index: 1001;
       user-select: none;
-      touch-action: none; /* désactive le comportement tactile natif */
+      touch-action: none;
     }
-    /* Styles utilisés uniquement en mode zoomé */
     img.zoomed {
       position: fixed;
       top: 50%;
@@ -82,7 +82,6 @@
     a:hover {
       text-decoration: underline;
     }
-    /* HUD texte */
     #hud-text {
       display: none;
       position: fixed;
@@ -90,14 +89,13 @@
       width: 100%;
       text-align: center;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Press Start 2P', monospace;
       font-size: 18px;
       text-shadow: 0 0 5px black;
       user-select: none;
       pointer-events: none;
       z-index: 1100;
     }
-    /* Responsive pour petits écrans */
     @media (max-width: 600px) {
       .message-container {
         max-width: 140px;
@@ -116,14 +114,13 @@
   </style>
 </head>
 <body>
-  <div id="blur-bg"></div> <!-- div flouté en fond -->
+  <div id="blur-bg"></div>
   <img id="pixel-art" src="Nintendo project pixels.png" alt="Pixel Art" />
   <div id="hud-text"></div>
   <div class="message-container" id="thanks-message"></div>
   <div class="link-container" id="grief-link"></div>
 
   <script>
-    // Traductions
     const userLang = navigator.language || navigator.userLanguage;
     const translations = {
       fr: {
@@ -160,38 +157,34 @@
 
     document.getElementById("thanks-message").innerHTML = messages.thanks;
 
-    // On place le texte HUD traduit
     const hudText = document.getElementById("hud-text");
     hudText.textContent = messages.hudPause;
 
     const img = document.getElementById("pixel-art");
     const blurBg = document.getElementById("blur-bg");
 
-    let zoomLevel = 0;  // 0 = normal, 1 = zoom 1, 2 = zoom 2 (PC uniquement)
+    let zoomLevel = 0; 
     let targetX = 50, targetY = 50;
     let currentX = 50, currentY = 50;
     let isPaused = false;
 
-    // Variables zoom tactile
     let scale = 1;
     let lastScale = 1;
     let startTouches = [];
-    let originX = 50; // % relatif pour transform-origin
+    let originX = 50;
     let originY = 50;
     let lastTranslateX = 0;
     let lastTranslateY = 0;
     let translateX = 0;
     let translateY = 0;
 
-    // Gestion souris clic (PC)
     img.addEventListener("click", (e) => {
-      if (e.button === 0 && !isTouchDevice()) { // Ignore clic tactile
+      if (e.button === 0 && !isTouchDevice()) {
         if (zoomLevel < 2) {
           zoomLevel++;
           if (zoomLevel === 1) {
             targetX = currentX = 50;
             targetY = currentY = 50;
-            // Reset zoom tactile
             scale = 6;
             translateX = 0;
             translateY = 0;
@@ -216,7 +209,6 @@
           img.removeAttribute("title");
           isPaused = false;
           hudText.textContent = messages.hudPause;
-          // Reset zoom tactile aussi
           scale = 1;
           translateX = 0;
           translateY = 0;
@@ -226,52 +218,48 @@
       }
     });
 
-    // Clic droit = dézoom progressif (2 -> 1 -> 0)
+    // Clic droit = dézoom progressif uniquement si zoom actif
     img.addEventListener("contextmenu", (e) => {
-      if (!isTouchDevice()) {
+      if (zoomLevel > 0) {
         e.preventDefault();
-        if (zoomLevel > 0) {
-          zoomLevel--;
-          if (zoomLevel === 0) {
-            img.classList.remove("zoomed");
-            img.style.transform = "";
-            img.style.transformOrigin = "center center";
-            img.style.cursor = "zoom-in";
-            blurBg.style.display = "none";
-            hudText.style.display = "none";
-            img.removeAttribute("title");
-            isPaused = false;
-            hudText.textContent = messages.hudPause;
-            // Reset zoom tactile aussi
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            lastTranslateX = 0;
-            lastTranslateY = 0;
-          } else {
-            img.classList.add("zoomed");
-            blurBg.style.display = "block";
-            hudText.style.display = "block";
-            img.style.cursor = "zoom-out";
-            img.setAttribute("title", messages.tooltipZoomOut);
-            setTimeout(() => {
-              if (zoomLevel > 0) {
-                img.style.cursor = "zoom-in";
-              }
-            }, 100);
-          }
+        zoomLevel--;
+        if (zoomLevel === 0) {
+          img.classList.remove("zoomed");
+          img.style.transform = "";
+          img.style.transformOrigin = "center center";
+          img.style.cursor = "zoom-in";
+          blurBg.style.display = "none";
+          hudText.style.display = "none";
+          img.removeAttribute("title");
+          isPaused = false;
+          hudText.textContent = messages.hudPause;
+          scale = 1;
+          translateX = 0;
+          translateY = 0;
+          lastTranslateX = 0;
+          lastTranslateY = 0;
+        } else {
+          img.classList.add("zoomed");
+          blurBg.style.display = "block";
+          hudText.style.display = "block";
+          img.style.cursor = "zoom-out";
+          img.setAttribute("title", messages.tooltipZoomOut);
+          setTimeout(() => {
+            if (zoomLevel > 0) {
+              img.style.cursor = "zoom-in";
+            }
+          }, 100);
         }
       }
+      // Sinon menu contextuel normal (zoomLevel = 0)
     });
 
-    // Déplacement souris quand zoom PC
     document.addEventListener("mousemove", (e) => {
       if (zoomLevel === 0 || isPaused || isTouchDevice()) return;
       targetX = (e.clientX / window.innerWidth) * 100;
       targetY = (e.clientY / window.innerHeight) * 100;
     });
 
-    // Espace pause / reprise (PC)
     document.addEventListener("keydown", (e) => {
       if (zoomLevel === 0 || isTouchDevice()) return;
       if (e.code === "Space") {
@@ -287,7 +275,6 @@
       }
     });
 
-    // Animation PC zoom
     function animate() {
       if (zoomLevel > 0 && !isTouchDevice()) {
         currentX += (targetX - currentX) * 0.05;
@@ -300,12 +287,10 @@
     }
     animate();
 
-    // Détection simple de touch device
     function isTouchDevice() {
       return ('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     }
 
-    // Helper pour distance 2 doigts
     function getDistance(touches) {
       const [touch1, touch2] = touches;
       const dx = touch2.clientX - touch1.clientX;
@@ -313,7 +298,6 @@
       return Math.sqrt(dx * dx + dy * dy);
     }
 
-    // Helper midpoint 2 doigts
     function getMidpoint(touches) {
       const [touch1, touch2] = touches;
       return {
@@ -322,7 +306,6 @@
       };
     }
 
-    // Touchstart pour zoom tactile
     img.addEventListener("touchstart", (e) => {
       if (e.touches.length === 2) {
         e.preventDefault();
@@ -333,8 +316,6 @@
         originY = (midpoint.y / window.innerHeight) * 100;
         lastTranslateX = translateX;
         lastTranslateY = translateY;
-
-        // Si on n'est pas en mode zoom tactile encore, activer zoomed et blur
         if (!img.classList.contains("zoomed")) {
           img.classList.add("zoomed");
           blurBg.style.display = "block";
@@ -350,7 +331,6 @@
       }
     });
 
-    // Touchmove pour pinch + drag
     img.addEventListener("touchmove", (e) => {
       if (e.touches.length === 2) {
         e.preventDefault();
@@ -358,7 +338,6 @@
         const startDistance = getDistance(startTouches);
         const scaleChange = currentDistance / startDistance;
         scale = Math.min(Math.max(lastScale * scaleChange, 1), 12);
-
         img.style.transformOrigin = `${originX}% ${originY}%`;
         img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
       } else if (e.touches.length === 1 && scale > 1) {
@@ -367,30 +346,24 @@
         const startTouch = startTouches[0];
         const dx = touch.clientX - startTouch.clientX;
         const dy = touch.clientY - startTouch.clientY;
-
         translateX = lastTranslateX + dx / scale;
         translateY = lastTranslateY + dy / scale;
-
         img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
       }
     });
 
-    // Touchend pour reset si zoom < 1
     img.addEventListener("touchend", (e) => {
-      if (e.touches.length === 0) {
-        if (scale <= 1) {
-          scale = 1;
-          translateX = 0;
-          translateY = 0;
-          img.classList.remove("zoomed");
-          blurBg.style.display = "none";
-          hudText.style.display = "none";
-          img.style.transform = "";
-          img.style.cursor = "zoom-in";
-          isPaused = false;
-          hudText.textContent = messages.hudPause;
-        }
-        startTouches = [];
+      if (scale <= 1) {
+        scale = 1;
+        translateX = 0;
+        translateY = 0;
+        lastTranslateX = 0;
+        lastTranslateY = 0;
+        img.classList.remove("zoomed");
+        blurBg.style.display = "none";
+        hudText.style.display = "none";
+        img.style.transform = "";
+        img.style.cursor = "zoom-in";
       }
     });
   </script>
