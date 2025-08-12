@@ -1,0 +1,17 @@
+/* zoom/hud/hud.css */
+#hud-text {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Press Start 2P', cursive, monospace;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  z-index: 1002;
+  user-select: none;
+  display: none;
+  pointer-events: none;
+  width: 100%;
+  box-sizing: border-box;
+}

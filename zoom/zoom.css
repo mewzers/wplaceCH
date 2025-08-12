@@ -1,0 +1,17 @@
+/* zoom/zoom.css */
+img.zoomed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  cursor: zoom-in;
+  transform-origin: center center;
+  transform: scale(3) translate(0, 0);
+  transition: transform 0.1s ease-out;
+  z-index: 1001;
+  user-select: none;
+  touch-action: none;
+}

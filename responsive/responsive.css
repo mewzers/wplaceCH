@@ -1,0 +1,45 @@
+/* responsive/responsive.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.message-container {
+  position: absolute;
+  margin-top: 10px;
+  font-size: 16px;
+  max-width: 270px;
+  top: 310px;
+  left: 8px;
+  text-align: justify;
+  z-index: 1;
+}
+
+.link-container {
+  position: absolute;
+  text-align: left;
+  margin-top: 10px;
+  font-size: 16px;
+  max-width: 800px;
+  top: 720px;
+  left: 8px;
+  z-index: 1;
+}
+
+a {
+  color: #4da3ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .message-container {
+    max-width: 140px;
+    font-size: 14px;
+    top: 150px;
+  }
+  .link-container {
+    font-size: 14px;
+    top: 360px;
+  }
+}
