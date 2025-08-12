@@ -2,20 +2,20 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 8px 12px;
+  width: 100%;
+  height: 40px; /* ajoute une hauteur fixe pour faciliter l’alignement */
+  padding: 0 12px; /* uniquement padding horizontal */
   font-size: 12px;
   font-family: 'Press Start 2P', cursive, monospace;
-  color: #fff;
+  color: #000;
   background: rgba(0,0,0,0.5);
-  z-index: 1002;
-  user-select: none;
-  display: none; /* Si tu veux voir l'effet, mets display: block temporairement */
-  pointer-events: none;
-  width: 100%;
   box-sizing: border-box;
   
-  display: flex;           /* Passe en flex */
-  justify-content: center; /* Centre horizontalement */
-  align-items: center;     /* Centre verticalement */
-  text-align: center;      /* En cas de multi-lignes */
+  display: flex;              /* active flexbox */
+  justify-content: center;    /* centre horizontalement */
+  align-items: center;        /* centre verticalement */
+  
+  user-select: none;
+  pointer-events: none;
+  z-index: 1002;
 }
