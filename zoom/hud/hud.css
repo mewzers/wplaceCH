@@ -1,4 +1,3 @@
-/* zoom/hud/hud.css */
 #hud-text {
   position: fixed;
   bottom: 0;
@@ -7,13 +6,16 @@
   font-size: 12px;
   font-family: 'Press Start 2P', cursive, monospace;
   color: #fff;
-  text-align: center;
   background: rgba(0,0,0,0.5);
   z-index: 1002;
   user-select: none;
-  display: none;
+  display: none; /* Si tu veux voir l'effet, mets display: block temporairement */
   pointer-events: none;
   width: 100%;
   box-sizing: border-box;
+  
+  display: flex;           /* Passe en flex */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center;     /* Centre verticalement */
+  text-align: center;      /* En cas de multi-lignes */
 }
-
