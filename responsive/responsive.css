@@ -57,7 +57,7 @@ a:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 780px) {
   img{
     max-width: 460px;
  }
@@ -75,5 +75,24 @@ a:hover {
   .link-container {
     font-size: 14px;
     top: 570px;
+  }
+@media (max-width: 500px) {
+  img{
+    max-width: 370px;
+ }
+  .message-container {
+    max-width: 125px;
+    font-size: 14px;
+    top: 250px;
+    left:25px;
+  }
+ .template-notice {
+   font-size: 14px;
+   top: 450px;
+
+ }
+  .link-container {
+    font-size: 14px;
+    top: 490px;
   }
 }
