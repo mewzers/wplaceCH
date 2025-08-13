@@ -1,25 +1,16 @@
 /* responsive/responsive.css */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-.template-notice {
-  margin-top:10px;
-  position: absolute;
-  font-size: 16px;
-  top: 720px;
-  left: 8px;
-  text-align: left;
-
-}
 
 .message-container {
   position: absolute;
   margin-top: 10px;
   font-size: 16px;
   max-width: 270px;
-  top: 310px;
+  top: 510px;
   left: 8px;
   text-align: justify;
-  z-index: 1;
+  z-index: 1002;
 }
 
 .link-container {
@@ -28,9 +19,19 @@
   margin-top: 10px;
   font-size: 16px;
   max-width: 800px;
-  top: 740px;
+  top: 895px;
   left: 8px;
-  z-index: 1;
+  z-index: 1002;
+}
+
+.template-notice {
+  margin-top:10px;
+  position: absolute;
+  font-size: 16px;
+  top: 915px;
+  left: 8px;
+  text-align: left;
+  z-index: 1002;
 }
 
 a {

@@ -15,7 +15,7 @@ img {
   image-rendering: crisp-edges;
   display: block;
   width: 100%;
-  max-width: 800px;
+  max-width: 750px;
   height: auto;
   cursor: zoom-in;
   transition: none;
@@ -23,4 +23,5 @@ img {
   z-index: 1001;
   user-select: none;
   touch-action: none;
+  left: 20px;
 }
