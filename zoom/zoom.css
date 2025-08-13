@@ -11,7 +11,7 @@ img.zoomed {
   transform-origin: center center;
   transform: scale(3) translate(0, 0);
   transition: transform 0.1s ease-out;
-  z-index: 1001;
+  z-index: 1004;
   user-select: none;
   touch-action: none;
 }
