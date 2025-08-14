@@ -5,7 +5,7 @@ img {
   image-rendering: crisp-edges;
   display: block;
   width: 100%;
-  max-width: 950px;
+  max-width: 850px;
   height: auto;
   cursor: zoom-in;
   transition: none;
@@ -13,16 +13,16 @@ img {
   z-index: 1001;
   user-select: none;
   touch-action: none;
-  left: 20px;
+  left: 10px;
 }
 
 .message-container {
   position: absolute;
   margin-top: 10px;
   font-size: 16px;
-  max-width: 270px;
-  top: 510px;
-  left: 25px;
+  max-width: 650px;
+  top: 800px;
+  left: 10px;
   text-align: justify;
   z-index: 1002;
 }
@@ -33,8 +33,8 @@ img {
   margin-top: 10px;
   font-size: 16px;
   max-width: 800px;
-  top: 895px;
-  left: 8px;
+  top: 860px;
+  left: 10px;
   z-index: 1002;
 }
 
@@ -42,8 +42,8 @@ img {
   margin-top:10px;
   position: absolute;
   font-size: 16px;
-  top: 915px;
-  left: 8px;
+  top: 880px;
+  left: 10px;
   text-align: left;
   z-index: 1002;
 }
@@ -57,42 +57,56 @@ a:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 880px) {
   img{
-    max-width: 580px;
+    max-width: 680px;
  }
   .message-container {
-    max-width: 160px;
+    max-width: 570px;
     font-size: 14px;
-    top: 310px;
-    left:25px;
+    top: 650px;
   }
  .template-notice {
    font-size: 14px;
-   top: 550px;
+   top: 720px;
 
  }
   .link-container {
     font-size: 14px;
-    top: 570px;
+    top: 740px;
   }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   img{
-    max-width: 470px;
+    max-width: 410px;
  }
   .message-container {
-    max-width: 125px;
+    max-width: 400px;
     font-size: 14px;
-    top: 250px;
-    left:25px;
+    top: 410px;
   }
  .template-notice {
    font-size: 14px;
-   top: 450px;
-
+   top: 480px;
  }
   .link-container {
     font-size: 14px;
-    top: 490px;
+    top: 520px;
+  }
+  @media (max-width: 400px) {
+  img{
+    max-width: 380px;
+ }
+  .message-container {
+    max-width: 325px;
+    font-size: 14px;
+    top: 360px;
+  }
+ .template-notice {
+   font-size: 14px;
+   top: 440px;
+ }
+  .link-container {
+    font-size: 14px;
+    top: 480px;
   }
 }
