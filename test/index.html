@@ -10,8 +10,15 @@
   <link rel="stylesheet" href="zoom/zoom.css" />
   <link rel="stylesheet" href="zoom/hud/hud.css" />
   <link rel="stylesheet" href="zoom/blur/blur.css" />
+  <link rel="stylesheet" href="hud-default/hud-default.css" />
+
 </head>
 <body>
+  <div id="hud-default">
+    <span id="hud-toggle">&gt;</span>
+    <span id="hud-content"></span>
+  </div>
+
   <div id="blur-bg"></div>
 
   <img class="pixel-art" src="img/Nintendo project pixels.png" alt="Pixel Art" />
@@ -29,6 +36,7 @@
   <div id="hud-text"></div>
 
   <script src="translations/translations.js"></script>
+  <script src="hud-default/hud-default.js"></script>
   <script src="zoom/blur/blur.js"></script>
   <script src="zoom/hud/hud.js"></script>
   <script src="zoom/zoom.js"></script>
